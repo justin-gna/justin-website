@@ -1,0 +1,56 @@
+@use '../../../variables' as vars;
+
+.container {
+  position: relative;
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.title {
+  margin: 0;
+  flex-shrink: 1;
+  min-width: 0;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.tags {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  flex-shrink: 0;
+}
+
+.tag {
+  font-family: vars.$font-body;
+  font-size: 0.65rem;
+  padding: 2px 8px;
+  border-radius: 100px;
+  border: 1px solid vars.$color-secondary;
+  color: vars.$color-secondary;
+  white-space: nowrap;
+}
+
+.tagMore {
+  font-family: vars.$font-body;
+  font-size: 0.65rem;
+  padding: 2px 8px;
+  border-radius: 100px;
+  background: rgba(255, 175, 138, 0.3);
+  color: vars.$color-secondary;
+  white-space: nowrap;
+}
+
+.ghost {
+  position: absolute;
+  visibility: hidden;
+  pointer-events: none;
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  white-space: nowrap;
+}

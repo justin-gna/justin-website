@@ -1,0 +1,152 @@
+@use '../../../variables' as vars;
+
+.backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 150;
+  background-color: rgba(0, 0, 0, 0.75);
+}
+
+// Animated card overlay — width locked via inline style, positioned at top:0 left:0,
+// translated to card's origin via x/y. No height set so content determines it naturally.
+.card {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 151;
+  border-radius: 12px;
+  cursor: default;
+}
+
+.flipCard {
+  perspective: 2000px;
+  height: 100%;
+}
+
+.flipCardInner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.55s ease;
+}
+
+.flipped .flipCardInner {
+  transform: rotateY(180deg);
+}
+
+// box-sizing: border-box ensures width: 100% includes the border, matching
+// the grid card's content area (grid card uses content-box but outer rect includes its border)
+.front {
+  box-sizing: border-box;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  border-radius: 12px;
+  overflow: hidden;
+  background-color: vars.$color-surface;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.back {
+  position: absolute;
+  inset: 0;
+  transform: rotateY(180deg);
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  border-radius: 12px;
+  overflow-y: auto;
+  background-color: vars.$color-surface;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.closeButton {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: none;
+  border: none;
+  color: vars.$color-text-muted;
+  font-size: 1.1rem;
+  cursor: pointer;
+  padding: 4px 8px;
+  transition: color 0.2s ease;
+  font-family: vars.$font-body;
+  text-transform: none;
+
+  &:hover {
+    color: vars.$color-text;
+  }
+}
+
+.backTitle {
+  font-family: vars.$font-heading;
+  font-size: 2rem;
+  font-weight: vars.$h3-weight;
+  margin: 0;
+  padding-right: 40px;
+}
+
+.description {
+  color: vars.$color-text-muted;
+  line-height: 1.65;
+  margin: 0;
+}
+
+.techStack {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.techTag {
+  font-family: vars.$font-body;
+  font-size: 0.78rem;
+  padding: 4px 12px;
+  border-radius: 100px;
+  border: 1px solid vars.$color-secondary;
+  color: vars.$color-secondary;
+}
+
+.linksSection {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  align-items: flex-start;
+  margin-top: auto;
+}
+
+.link {
+  font-family: vars.$font-body;
+  font-size: vars.$button-size;
+  font-weight: vars.$button-weight;
+  color: vars.$color-text;
+  text-decoration: none;
+  text-transform: lowercase;
+  transition: color 0.2s ease;
+
+  &:hover {
+    color: vars.$color-secondary;
+  }
+}
+
+@media (max-width: 767px) {
+  .back {
+    padding: 32px 24px;
+  }
+
+  .backTitle {
+    font-size: 1.6rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .flipCardInner {
+    transition: none;
+  }
+}
