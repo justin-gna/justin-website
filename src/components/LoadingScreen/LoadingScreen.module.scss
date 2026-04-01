@@ -1,0 +1,62 @@
+@use '../../variables' as vars;
+
+.overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  background-color: vars.$color-bg;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 1;
+  transition: opacity 0.5s ease;
+  pointer-events: all;
+}
+
+.fadeOut {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.text {
+  font-family: vars.$font-body;
+  font-size: 1.25rem;
+  color: vars.$color-text-muted;
+  letter-spacing: 0.05rem;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.dots {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.dot {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background-color: vars.$color-text-muted;
+  animation: pulse 0.9s ease-in-out infinite;
+
+  &:nth-child(2) {
+    animation-delay: 0.15s;
+  }
+
+  &:nth-child(3) {
+    animation-delay: 0.3s;
+  }
+}
+
+@keyframes pulse {
+  0%, 80%, 100% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+  40% {
+    transform: scale(1.5);
+    opacity: 1;
+  }
+}

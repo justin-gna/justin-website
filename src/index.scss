@@ -1,0 +1,121 @@
+@use 'variables' as *;
+
+// ============================================
+// BASE STYLES
+// ============================================
+
+html,
+body {
+  font-family: $font-body;
+  font-weight: $p-weight;
+  line-height: $p-line-height;
+
+  color-scheme: light dark;
+  color: $color-text;
+  background-color: $color-bg;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100%;
+}
+
+#root {
+  min-height: 100%;
+}
+
+// ============================================
+// TYPOGRAPHY ELEMENTS
+// ============================================
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: $font-heading;
+  margin: 0;
+  color: $color-text;
+}
+
+h1 {
+  font-size: $h1-size;
+  font-weight: $h1-weight;
+  line-height: $h1-line-height;
+  color: #ffffff;
+}
+
+h2 {
+  font-size: $h2-size;
+  font-weight: $h2-weight;
+  line-height: $h2-line-height;
+  color: $color-primary;
+}
+
+h3 {
+  font-size: $h3-size;
+  font-weight: $h3-weight;
+  line-height: $h3-line-height;
+}
+
+h4 {
+  font-size: $h4-size;
+  font-weight: $h4-weight;
+  line-height: $h4-line-height;
+}
+
+h5 {
+  font-size: $h5-size;
+  font-weight: $h5-weight;
+  line-height: $h5-line-height;
+}
+
+h6 {
+  font-size: $h6-size;
+  font-weight: $h6-weight;
+  line-height: $h6-line-height;
+}
+
+p {
+  font-family: $font-body;
+  font-size: $p-size;
+  font-weight: $p-weight;
+  line-height: $p-line-height;
+  margin: 0;
+}
+
+button {
+  font-family: $font-body;
+  font-size: $button-size;
+  font-weight: $button-weight;
+  line-height: $button-line-height;
+  text-transform: uppercase;
+  cursor: pointer;
+  background: none;
+  border: 1px solid $color-text-muted;
+  color: $color-text;
+  padding: 0.5rem 1.5rem;
+}
+
+// ============================================
+// RESPONSIVE TYPOGRAPHY
+// ============================================
+
+@media (max-width: 767px) {
+  h1 {
+    font-size: 3.5rem;
+  }
+
+  h2 {
+    font-size: 2.25rem;
+  }
+
+  h3 {
+    font-size: 1.5rem;
+  }
+
+  h4 {
+    font-size: 1.35rem;
+  }
+}

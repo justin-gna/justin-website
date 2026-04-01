@@ -1,0 +1,52 @@
+@use '../../variables' as vars;
+
+.projects {
+  position: relative;
+  background-color: vars.$color-bg;
+  padding: 90px 0 32px;
+}
+
+.sectionTitle {
+  text-align: center;
+  max-width: vars.$section-max-width;
+  margin: 0 auto 64px;
+  padding: 0 vars.$section-padding-x;
+}
+
+.container {
+  max-width: vars.$section-max-width;
+  margin: 0 auto;
+  padding: 0 vars.$section-padding-x;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: minmax(0, 620px);
+  justify-content: center;
+  gap: 32px;
+}
+
+// Single element: provides visual card appearance + tilt surface + click area
+.card {
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  background-color: vars.$color-surface;
+  overflow: hidden;
+  cursor: pointer;
+  will-change: transform;
+}
+
+@media (max-width: 767px) {
+  .projects {
+    padding: 80px 0 24px;
+  }
+
+  .sectionTitle {
+    margin-bottom: 48px;
+    padding: 0 vars.$section-padding-x-mobile;
+  }
+
+  .container {
+    padding: 0 vars.$section-padding-x-mobile;
+  }
+}

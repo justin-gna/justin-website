@@ -1,0 +1,40 @@
+@use '../../variables' as vars;
+
+.landing {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 0 vars.$section-padding-x;
+}
+
+.wave {
+  display: inline-block;
+  transform-origin: 70% 70%;
+  animation: waveHand 0.8s ease-in-out 0.9s 1 both;
+}
+
+.waveRepeat {
+  display: inline-block;
+  transform-origin: 70% 70%;
+  animation: waveHand 0.8s ease-in-out 0s 1 both;
+}
+
+@keyframes waveHand {
+  0%   { transform: rotate(0deg); }
+  10%  { transform: rotate(14deg); }
+  20%  { transform: rotate(-8deg); }
+  30%  { transform: rotate(14deg); }
+  40%  { transform: rotate(-4deg); }
+  50%  { transform: rotate(10deg); }
+  60%  { transform: rotate(0deg); }
+  100% { transform: rotate(0deg); }
+}
+
+@media (max-width: 767px) {
+  .landing {
+    padding: 0 vars.$section-padding-x-mobile;
+  }
+}

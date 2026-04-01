@@ -1,0 +1,20 @@
+@use '../../../variables' as vars;
+
+.image {
+  width: 100%;
+  height: auto;
+  display: block;
+  min-height: 200px;
+  max-height: 320px;
+  object-fit: cover;
+}
+
+.placeholder {
+  height: 320px;
+}
+
+@media (max-width: 767px) {
+  .image {
+    min-height: 160px;
+  }
+}

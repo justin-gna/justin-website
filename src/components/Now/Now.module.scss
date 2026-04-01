@@ -1,0 +1,72 @@
+@use '../../variables' as vars;
+
+.now {
+  background-color: vars.$color-bg;
+  padding: vars.$section-padding-y 0;
+}
+
+.now a {
+  color: vars.$color-secondary;
+  text-decoration: none;
+}
+
+.now a:hover {
+  text-decoration: underline;
+}
+
+.sectionTitle {
+  max-width: vars.$section-max-width;
+  margin: 0 auto;
+  padding: 0 calc(vars.$section-padding-x + 15%);
+}
+
+.description {
+  max-width: vars.$section-max-width;
+  margin: 0 auto;
+  padding: calc(vars.$section-padding-y * 0.50) calc(vars.$section-padding-x + 15%);
+}
+
+.container {
+  max-width: vars.$section-max-width;
+  margin: 0 auto;
+  padding: 0 calc(vars.$section-padding-x + 15%);
+}
+
+.subsection {
+  margin-bottom: 3rem;
+
+  &:last-child {
+    margin-bottom: 0;
+  }
+
+  h3 {
+    color: vars.$color-primary;
+    padding-bottom: 1rem;
+  }
+
+  // p {
+  //   color: vars.$color-text;
+  //   font-weight: 400;
+  // }
+}
+
+@media (max-width: 767px) {
+  
+  .sectionTitle {
+    margin-bottom: 3rem;
+    padding: 0 vars.$section-padding-x-mobile;
+  }
+
+  .description {
+    margin-bottom: 3rem;
+    padding: 0 vars.$section-padding-x-mobile;
+  }
+
+  .container {
+    padding: 0 vars.$section-padding-x-mobile;
+  }
+
+  .subsection {
+    margin-bottom: 3rem;
+  }
+}
