@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom'
+import { BrowserRouter, Routes, Route, useLocation, HashRouter } from 'react-router-dom'
 import { MotionConfig } from 'framer-motion'
 import { ShaderGradient, ShaderGradientCanvas } from '@shadergradient/react'
 import LoadingScreen from './components/LoadingScreen'
@@ -91,9 +91,9 @@ function AppContent() {
 
 function App() {
   return (
-    <BrowserRouter>
+    <HashRouter>
       <AppContent />
-    </BrowserRouter>
+    </HashRouter>
   )
 }
 
