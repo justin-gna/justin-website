@@ -5,6 +5,7 @@ function Now() {
   return (
     <section className={styles.now}>
       <h2 className={styles.sectionTitle}>what i'm up to now</h2>
+      <p className={styles.lastUpdated}>last updated: march 2026</p>
       <p className={styles.description}>
         this is my 'now' page, if you're on this website you probably have an idea of who i am and what i do, 
         so this page is dedicated to talking about what i've been up to recently. 

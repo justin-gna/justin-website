@@ -3,6 +3,7 @@
 .now {
   background-color: vars.$color-bg;
   padding: vars.$section-padding-y 0;
+  min-height: 100vh;
 }
 
 .now a {
@@ -18,6 +19,14 @@
   max-width: vars.$section-max-width;
   margin: 0 auto;
   padding: 0 calc(vars.$section-padding-x + 15%);
+}
+
+.lastUpdated {
+  max-width: vars.$section-max-width;
+  margin: 0 auto;
+  padding: 0.5rem calc(vars.$section-padding-x + 15%) 0;
+  color: vars.$color-text-muted;
+  font-size: 0.85rem;
 }
 
 .description {
@@ -51,10 +60,15 @@
 }
 
 @media (max-width: 767px) {
-  
+
   .sectionTitle {
-    margin-bottom: 3rem;
+    margin-bottom: 0.25rem;
     padding: 0 vars.$section-padding-x-mobile;
+  }
+
+  .lastUpdated {
+    padding: 0 vars.$section-padding-x-mobile;
+    margin-bottom: 3rem;
   }
 
   .description {
