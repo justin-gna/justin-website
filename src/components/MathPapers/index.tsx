@@ -1,15 +1,12 @@
 import { motion } from 'framer-motion'
 import styles from './MathPapers.module.scss'
-import chroniclesOfPiPdf from '../../assets/The_Chronicles_of_Pi.pdf'
-import chooseOrNotPdf from '../../assets/To_Choose_or_Not_To_Choose.pdf'
-import mat202PortfolioPdf from '../../assets/MAT202_Final_Portfolio.pdf'
 import ExternalLinkIcon from '../icons/ExternalLinkIcon'
 import { useFadeUp } from '../../hooks/useFadeUp'
 
 const papers = [
-  {name: "The Chronicles of Pi", description: "on the history of pi, its irrationality, and some interesting proofs", pdf: chroniclesOfPiPdf},
-  {name: "The Axiom of Choice: To Choose or Not To Choose", description: "on the axiom of choice and the implications of accepting it or not accepting it", pdf: chooseOrNotPdf},
-  {name: "MAT202 Final Portfolio", description: "various proofs i did while taking mat202", pdf: mat202PortfolioPdf},
+  {name: "The Chronicles of Pi", description: "on the history of pi, its irrationality, and some interesting proofs", pdf: "/The_Chronicles_of_Pi.pdf"},
+  {name: "The Axiom of Choice: To Choose or Not To Choose", description: "on the axiom of choice and the implications of accepting it or not accepting it", pdf: "/To_Choose_or_Not_To_Choose.pdf"},
+  {name: "MAT202 Final Portfolio", description: "various proofs i did while taking mat202", pdf: "/MAT202_Final_Portfolio.pdf"},
 ]
 
 function MathPapers() {

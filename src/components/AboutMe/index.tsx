@@ -2,7 +2,6 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import styles from './AboutMe.module.scss'
 import logoSvg from '../../assets/logo.svg'
-import resumePdf from '../../assets/Justin_Gnananadchtheram_Resume.pdf'
 import LinkedInIcon from '../icons/LinkedInIcon'
 import GitHubIcon from '../icons/GitHubIcon'
 import InstagramIcon from '../icons/InstagramIcon'
@@ -39,7 +38,7 @@ function AboutMe() {
               <InstagramIcon />
             </a>
           </div>
-          <a href={resumePdf} target="_blank" rel="noopener noreferrer" className={styles.resumeLink}>
+          <a href={"/Justin_Gnananadchtheram_Resume.pdf"} target="_blank" rel="noopener noreferrer" className={styles.resumeLink}>
             résumé
           </a>
         </div>
