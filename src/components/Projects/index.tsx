@@ -1,7 +1,5 @@
-import { useRef, useState } from 'react'
 import { motion } from 'framer-motion'
 import styles from './Projects.module.scss'
-import ProjectModal from './ProjectModal'
 import { ProjectCard } from './ProjectCard'
 import { useFadeUp } from '../../hooks/useFadeUp'
 import websiteImg from '../../assets/website.png'
@@ -9,8 +7,6 @@ import letterboxdImg from '../../assets/letterboxd.png'
 import boggleImg from '../../assets/boggle.png'
 import cyberSecImg from '../../assets/cybersec.png'
 import mlImg from '../../assets/machinelearning.png'
-
-const TILT_INTENSITY = 7
 
 function AnimatedCard({ children }: { children: React.ReactNode }) {
   const fade = useFadeUp<HTMLDivElement>()
@@ -80,81 +76,20 @@ const projects: Project[] = [
 ]
 
 function Projects() {
-  const [activeIndex, setActiveIndex] = useState<number | null>(null)
-  const [activeRect, setActiveRect] = useState<DOMRect | null>(null)
-  const cardRefs = useRef<(HTMLDivElement | null)[]>([])
-
-  const handleCardClick = (index: number) => {
-    if (activeIndex !== null) return
-    const el = cardRefs.current[index]
-    if (!el) return
-    // Reset any in-progress tilt before measuring so rect is accurate
-    el.style.transition = 'none'
-    el.style.transform = 'perspective(800px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)'
-    const rect = el.getBoundingClientRect()
-    el.style.visibility = 'hidden'
-    setActiveRect(rect)
-    setActiveIndex(index)
-  }
-
-  const handleExited = (index: number) => {
-    const el = cardRefs.current[index]
-    if (el) el.style.visibility = ''
-    setActiveIndex(null)
-    setActiveRect(null)
-  }
-
-  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>, index: number) => {
-    if (activeIndex === index) return
-    const el = cardRefs.current[index]
-    if (!el) return
-    const rect = e.currentTarget.getBoundingClientRect()
-    const offsetX = e.clientX - (rect.left + rect.width / 2)
-    const offsetY = e.clientY - (rect.top + rect.height / 2)
-    const rotX = (offsetY / (rect.height / 2)) * TILT_INTENSITY
-    const rotY = -(offsetX / (rect.width / 2)) * TILT_INTENSITY
-    el.style.transition = 'transform 0.08s linear'
-    el.style.transform = `perspective(800px) rotateX(${rotX}deg) rotateY(${rotY}deg) scale3d(1.03, 1.03, 1.03)`
-  }
-
-  const handleMouseLeave = (index: number) => {
-    const el = cardRefs.current[index]
-    if (!el) return
-    el.style.transition = 'transform 0.5s ease-out'
-    el.style.transform = 'perspective(800px) rotateX(0deg) rotateY(0deg) scale3d(1, 1, 1)'
-  }
-
   return (
     <section id="projects" className={styles.projects}>
       <h2 className={styles.sectionTitle}>projects</h2>
       <div className={styles.container}>
         <div className={styles.grid}>
-          {projects.map((project, index) => (
+          {projects.map(project => (
             <AnimatedCard key={project.title}>
-              <div
-                ref={(el) => { cardRefs.current[index] = el }}
-                className={styles.card}
-                onClick={() => handleCardClick(index)}
-                onMouseMove={(e) => handleMouseMove(e, index)}
-                onMouseLeave={() => handleMouseLeave(index)}
-              >
+              <div className={styles.card}>
                 <ProjectCard project={project} />
               </div>
             </AnimatedCard>
           ))}
         </div>
       </div>
-      {/* One overlay card per project — always in DOM so images are preloaded.
-          Each is position:fixed and visibility:hidden until its card is clicked. */}
-      {projects.map((project, index) => (
-        <ProjectModal
-          key={project.title}
-          project={project}
-          isActive={activeIndex === index}
-          rect={activeIndex === index ? activeRect : null}
-          onExited={() => handleExited(index)}
-        />
-      ))}
     </section>
   )
 }
