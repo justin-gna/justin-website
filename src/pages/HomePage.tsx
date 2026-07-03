@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+import { useEffect } from 'react'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { LetterboxdDiary } from 'letterboxd-diary'
 import Landing from '../components/Landing'
@@ -6,24 +6,9 @@ import AboutMe from '../components/AboutMe'
 import Projects from '../components/Projects'
 import MathPapers from '../components/MathPapers'
 
-interface HomePageProps {
-  isLoaded: boolean
-  onLandingVisibilityChange: (visible: boolean) => void
-}
-
-function HomePage({ isLoaded, onLandingVisibilityChange }: HomePageProps) {
-  const landingRef = useRef<HTMLDivElement>(null)
+function HomePage() {
   const location = useLocation()
   const navigate = useNavigate()
-
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => onLandingVisibilityChange(entry.isIntersecting),
-      { threshold: 0 }
-    )
-    if (landingRef.current) observer.observe(landingRef.current)
-    return () => observer.disconnect()
-  }, [onLandingVisibilityChange])
 
   // Handle state-based scroll navigation from other pages
   useEffect(() => {
@@ -40,9 +25,7 @@ function HomePage({ isLoaded, onLandingVisibilityChange }: HomePageProps) {
 
   return (
     <>
-      <div ref={landingRef}>
-        <Landing isLoaded={isLoaded} />
-      </div>
+      <Landing />
       <AboutMe />
       <Projects />
       <MathPapers />

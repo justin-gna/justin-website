@@ -2,11 +2,7 @@ import { useEffect, useRef, useState } from 'react'
 import { motion } from 'framer-motion'
 import styles from './Landing.module.scss'
 
-interface LandingProps {
-  isLoaded: boolean
-}
-
-function Landing({ isLoaded }: LandingProps) {
+function Landing() {
   const sectionRef = useRef<HTMLElement>(null)
   const [isInView, setIsInView] = useState(true)
   const [loopStarted, setLoopStarted] = useState(false)
@@ -25,10 +21,9 @@ function Landing({ isLoaded }: LandingProps) {
 
   // Start loop after initial animation finishes (0.9s delay + 0.8s wave)
   useEffect(() => {
-    if (!isLoaded) return
     const timeout = setTimeout(() => setLoopStarted(true), 1700)
     return () => clearTimeout(timeout)
-  }, [isLoaded])
+  }, [])
 
   // Loop every 2.5s only when in view
   useEffect(() => {
@@ -37,17 +32,13 @@ function Landing({ isLoaded }: LandingProps) {
     return () => clearInterval(interval)
   }, [loopStarted, isInView])
 
-  const waveClass = !isLoaded
-    ? ''
-    : loopStarted
-      ? styles.waveRepeat
-      : styles.wave
+  const waveClass = loopStarted ? styles.waveRepeat : styles.wave
 
   return (
     <section id="home" ref={sectionRef} className={styles.landing}>
       <motion.div
         initial={{ opacity: 0, y: 20 }}
-        animate={isLoaded ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: 'easeOut' }}
       >
         <h1>

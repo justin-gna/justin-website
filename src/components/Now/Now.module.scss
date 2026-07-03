@@ -26,7 +26,8 @@
   margin: 0 auto;
   padding: 0.5rem calc(vars.$section-padding-x + 15%) 0;
   color: vars.$color-text-muted;
-  font-size: 0.85rem;
+  font-size: 0.95rem;
+  font-style: italic;
 }
 
 .description {
@@ -68,7 +69,7 @@
 
   .lastUpdated {
     padding: 0 vars.$section-padding-x-mobile;
-    margin-bottom: 3rem;
+    margin-bottom: 1.5rem;
   }
 
   .description {
