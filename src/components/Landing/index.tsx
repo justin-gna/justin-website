@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { motion } from 'framer-motion'
 import styles from './Landing.module.scss'
+import { GradientBackground } from './GradientBackground'
 
 function Landing() {
   const sectionRef = useRef<HTMLElement>(null)
@@ -36,7 +37,9 @@ function Landing() {
 
   return (
     <section id="home" ref={sectionRef} className={styles.landing}>
+      <GradientBackground />
       <motion.div
+        className={styles.content}
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: 'easeOut' }}
