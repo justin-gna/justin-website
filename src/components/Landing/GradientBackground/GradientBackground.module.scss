@@ -1,14 +1,22 @@
 @use '../../../variables' as vars;
 
 $circle-size: 80%;
-$blending: screen;
+$blending: soft-light;
 
-// Full-hero layer. Background "colors" are the site bg on both ends (flat #121212).
+// Blob palette: primary/secondary plus the warm reds/pinks from the palette.
+$blob-1: vars.$color-primary; // #ec2651
+$blob-2: vars.$color-secondary; // #ffaf8a
+$blob-3: #e59095;
+$blob-4: #ff878e; //#f63358;
+$blob-5: #ff7f6b;
+$blob-interactive: #f63358; //#e59095; // mouse-follow blob
+
+// Full-hero layer. Dark base blends the site bg (#121212) into pure black.
 .gradientBg {
   position: absolute;
   inset: 0;
   overflow: hidden;
-  background: vars.$color-bg;
+  background: radial-gradient(circle at 50% 40%, vars.$color-bg 0%, #111111 100%);
 }
 
 // Hidden SVG that only carries the #goo filter definition.
@@ -53,21 +61,21 @@ $blending: screen;
   mix-blend-mode: $blending;
 }
 
-// Blobs alternate primary / secondary.
+// Each blob gets its own palette color.
 .g1 {
-  @include blob(vars.$color-primary);
+  @include blob($blob-1);
   transform-origin: center center;
   animation: moveVertical 30s ease infinite;
 }
 
 .g2 {
-  @include blob(vars.$color-secondary);
+  @include blob($blob-2);
   transform-origin: calc(50% - 400px);
   animation: moveInCircle 20s reverse infinite;
 }
 
 .g3 {
-  @include blob(vars.$color-primary);
+  @include blob($blob-3);
   top: calc(50% - #{$circle-size} / 2 + 200px);
   left: calc(50% - #{$circle-size} / 2 - 500px);
   transform-origin: calc(50% + 400px);
@@ -75,14 +83,14 @@ $blending: screen;
 }
 
 .g4 {
-  @include blob(vars.$color-secondary);
+  @include blob($blob-4);
   transform-origin: calc(50% - 200px);
   animation: moveHorizontal 40s ease infinite;
   opacity: 0.7;
 }
 
 .g5 {
-  @include blob(vars.$color-primary);
+  @include blob($blob-5);
   width: calc(#{$circle-size} * 2);
   height: calc(#{$circle-size} * 2);
   top: calc(50% - #{$circle-size});
@@ -110,7 +118,7 @@ $blending: screen;
   height: 100%;
   top: -50%;
   left: -50%;
-  background: radial-gradient(circle at center, rgba(vars.$color-primary, 0.8) 0, rgba(vars.$color-primary, 0) 50%) no-repeat;
+  background: radial-gradient(circle at center, rgba($blob-interactive, 0.8) 0, rgba($blob-interactive, 0) 50%) no-repeat;
   mix-blend-mode: $blending;
   opacity: 0.7;
 }
