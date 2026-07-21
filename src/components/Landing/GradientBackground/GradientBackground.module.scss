@@ -1,0 +1,124 @@
+@use '../../../variables' as vars;
+
+$circle-size: 80%;
+$blending: soft-light;
+
+// Blob palette: primary/secondary plus the warm reds/pinks from the palette.
+$blob-1: vars.$color-primary; // #ec2651
+$blob-2: vars.$color-secondary; // #ffaf8a
+$blob-3: #e59095;
+$blob-4: #ff878e; //#f63358;
+$blob-5: #ff7f6b;
+$blob-interactive: #f63358; //#e59095; // mouse-follow blob
+
+// Full-hero layer. Dark base blends the site bg (#121212) into pure black.
+.gradientBg {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  background: radial-gradient(circle at 50% 40%, vars.$color-bg 0%, #111111 100%);
+}
+
+// Hidden SVG that only carries the #goo filter definition.
+.svgFilter {
+  display: none;
+}
+
+// The goo filter + heavy blur turn the overlapping blobs into merging metaballs.
+.gradientsContainer {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  filter: url(#goo) blur(40px);
+}
+
+@keyframes moveInCircle {
+  0% { transform: rotate(0deg); }
+  50% { transform: rotate(180deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@keyframes moveVertical {
+  0% { transform: translateY(-50%); }
+  50% { transform: translateY(50%); }
+  100% { transform: translateY(-50%); }
+}
+
+@keyframes moveHorizontal {
+  0% { transform: translateX(-50%) translateY(-10%); }
+  50% { transform: translateX(50%) translateY(10%); }
+  100% { transform: translateX(-50%) translateY(-10%); }
+}
+
+@mixin blob($color) {
+  position: absolute;
+  width: $circle-size;
+  height: $circle-size;
+  top: calc(50% - #{$circle-size} / 2);
+  left: calc(50% - #{$circle-size} / 2);
+  background: radial-gradient(circle at center, rgba($color, 0.8) 0, rgba($color, 0) 50%) no-repeat;
+  mix-blend-mode: $blending;
+}
+
+// Each blob gets its own palette color.
+.g1 {
+  @include blob($blob-1);
+  transform-origin: center center;
+  animation: moveVertical 30s ease infinite;
+}
+
+.g2 {
+  @include blob($blob-2);
+  transform-origin: calc(50% - 400px);
+  animation: moveInCircle 20s reverse infinite;
+}
+
+.g3 {
+  @include blob($blob-3);
+  top: calc(50% - #{$circle-size} / 2 + 200px);
+  left: calc(50% - #{$circle-size} / 2 - 500px);
+  transform-origin: calc(50% + 400px);
+  animation: moveInCircle 40s linear infinite;
+}
+
+.g4 {
+  @include blob($blob-4);
+  transform-origin: calc(50% - 200px);
+  animation: moveHorizontal 40s ease infinite;
+  opacity: 0.7;
+}
+
+.g5 {
+  @include blob($blob-5);
+  width: calc(#{$circle-size} * 2);
+  height: calc(#{$circle-size} * 2);
+  top: calc(50% - #{$circle-size});
+  left: calc(50% - #{$circle-size});
+  transform-origin: calc(50% - 800px) calc(50% + 200px);
+  animation: moveInCircle 20s ease infinite;
+}
+
+// Respect the OS reduced-motion setting: hold the blobs still (matches the
+// site-wide MotionConfig reducedMotion="user" stance).
+@media (prefers-reduced-motion: reduce) {
+  .g1,
+  .g2,
+  .g3,
+  .g4,
+  .g5 {
+    animation: none;
+  }
+}
+
+// Mouse-follow blob (primary), positioned via JS transform in Phase 3.
+.interactive {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  top: -50%;
+  left: -50%;
+  background: radial-gradient(circle at center, rgba($blob-interactive, 0.8) 0, rgba($blob-interactive, 0) 50%) no-repeat;
+  mix-blend-mode: $blending;
+  opacity: 0.7;
+}

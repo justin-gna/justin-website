@@ -26,14 +26,12 @@
   gap: 32px;
 }
 
-// Single element: provides visual card appearance + tilt surface + click area
+// Vertical card: image on top, title bar with expander below.
 .card {
   border-radius: 12px;
   border: 1px solid rgba(255, 255, 255, 0.08);
   background-color: vars.$color-surface;
   overflow: hidden;
-  cursor: pointer;
-  will-change: transform;
 }
 
 @media (max-width: 767px) {

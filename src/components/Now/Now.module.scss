@@ -19,6 +19,7 @@
   max-width: vars.$section-max-width;
   margin: 0 auto;
   padding: 0 calc(vars.$section-padding-x + 15%);
+  color: vars.$color-text;
 }
 
 .lastUpdated {
@@ -26,7 +27,8 @@
   margin: 0 auto;
   padding: 0.5rem calc(vars.$section-padding-x + 15%) 0;
   color: vars.$color-text-muted;
-  font-size: 0.85rem;
+  font-size: 0.95rem;
+  font-style: italic;
 }
 
 .description {
@@ -39,6 +41,20 @@
   max-width: vars.$section-max-width;
   margin: 0 auto;
   padding: 0 calc(vars.$section-padding-x + 15%);
+}
+
+.divider {
+  max-width: vars.$section-max-width;
+  margin: vars.$section-padding-y auto;
+  border: 0;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.archiveEntry {
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+  color: vars.$color-text;
 }
 
 .subsection {
@@ -68,7 +84,7 @@
 
   .lastUpdated {
     padding: 0 vars.$section-padding-x-mobile;
-    margin-bottom: 3rem;
+    margin-bottom: 1.5rem;
   }
 
   .description {
@@ -78,6 +94,10 @@
 
   .container {
     padding: 0 vars.$section-padding-x-mobile;
+  }
+
+  .divider {
+    margin: 3rem vars.$section-padding-x-mobile;
   }
 
   .subsection {

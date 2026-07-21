@@ -1,6 +1,7 @@
 @use '../../variables' as vars;
 
 .landing {
+  position: relative;
   height: 100vh;
   display: flex;
   flex-direction: column;
@@ -8,6 +9,13 @@
   justify-content: center;
   text-align: center;
   padding: 0 vars.$section-padding-x;
+  background-color: vars.$color-bg;
+  overflow: hidden;
+}
+
+.content {
+  position: relative;
+  z-index: 1;
 }
 
 .wave {
