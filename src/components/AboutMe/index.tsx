@@ -1,23 +1,24 @@
+'use client'
+
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import styles from './AboutMe.module.scss'
-import logoSvg from '../../assets/logo.svg'
 import LinkedInIcon from '../icons/LinkedInIcon'
 import GitHubIcon from '../icons/GitHubIcon'
 import InstagramIcon from '../icons/InstagramIcon'
 import { useFadeUp } from '../../hooks/useFadeUp'
 
 function AboutMe() {
-  const fade = useFadeUp<HTMLDivElement>()
+  const { ref, initial, animate } = useFadeUp<HTMLDivElement>()
   const [spinning, setSpinning] = useState(false)
 
   return (
     <section id="about" className={styles.about}>
       <motion.div
-        ref={fade.ref}
+        ref={ref}
         className={styles.container}
-        initial={fade.initial}
-        animate={fade.animate}
+        initial={initial}
+        animate={animate}
       >
         <div className={styles.leftColumn}>
           <div
@@ -25,7 +26,7 @@ function AboutMe() {
             onClick={() => { if (!spinning) setSpinning(true) }}
             onAnimationEnd={() => setSpinning(false)}
           >
-            <img src={logoSvg} alt="Justin" className={styles.profileImage} />
+            <img src="/logo.svg" alt="Justin" className={styles.profileImage} />
           </div>
           <div className={styles.socialLinks}>
             <a href="https://linkedin.com/in/justin-gna/" target="_blank" rel="noopener noreferrer" className={styles.iconLink}>

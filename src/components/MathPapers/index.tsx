@@ -1,3 +1,5 @@
+'use client'
+
 import { motion } from 'framer-motion'
 import styles from './MathPapers.module.scss'
 import ExternalLinkIcon from '../icons/ExternalLinkIcon'
@@ -10,15 +12,15 @@ const papers = [
 ]
 
 function MathPapers() {
-  const fade = useFadeUp<HTMLDivElement>()
+  const { ref, initial, animate } = useFadeUp<HTMLDivElement>()
 
   return (
     <section id="math" className={styles.mathPapers}>
       <motion.div
-        ref={fade.ref}
+        ref={ref}
         className={styles.container}
-        initial={fade.initial}
-        animate={fade.animate}
+        initial={initial}
+        animate={animate}
       >
         <h3>math</h3>
         <ul className={styles.list}>

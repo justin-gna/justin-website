@@ -1,4 +1,4 @@
-@use 'variables' as *;
+@use '../src/variables' as *;
 
 // ============================================
 // BASE STYLES
@@ -22,10 +22,6 @@ body {
   margin: 0;
   padding: 0;
   width: 100%;
-  min-height: 100%;
-}
-
-#root {
   min-height: 100%;
 }
 

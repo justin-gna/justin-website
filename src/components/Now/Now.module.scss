@@ -19,6 +19,7 @@
   max-width: vars.$section-max-width;
   margin: 0 auto;
   padding: 0 calc(vars.$section-padding-x + 15%);
+  color: vars.$color-text;
 }
 
 .lastUpdated {
@@ -40,6 +41,20 @@
   max-width: vars.$section-max-width;
   margin: 0 auto;
   padding: 0 calc(vars.$section-padding-x + 15%);
+}
+
+.divider {
+  max-width: vars.$section-max-width;
+  margin: vars.$section-padding-y auto;
+  border: 0;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.archiveEntry {
+  margin-top: 1.5rem;
+  margin-bottom: 1.5rem;
+  color: vars.$color-text;
 }
 
 .subsection {
@@ -79,6 +94,10 @@
 
   .container {
     padding: 0 vars.$section-padding-x-mobile;
+  }
+
+  .divider {
+    margin: 3rem vars.$section-padding-x-mobile;
   }
 
   .subsection {

@@ -1,6 +1,9 @@
+'use client'
+
 import { useEffect, useRef, useState } from 'react'
 import { createPortal } from 'react-dom'
-import { Link, useLocation, useNavigate } from 'react-router-dom'
+import Link from 'next/link'
+import { usePathname, useRouter } from 'next/navigation'
 import styles from './Navbar.module.scss'
 
 function scrollToSection(id: string) {
@@ -9,8 +12,8 @@ function scrollToSection(id: string) {
 }
 
 function Navbar() {
-  const location = useLocation()
-  const navigate = useNavigate()
+  const pathname = usePathname()
+  const router = useRouter()
   const [isHamburger, setIsHamburger] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
   const [navbarHeight, setNavbarHeight] = useState(57)
@@ -53,11 +56,6 @@ function Navbar() {
     return () => window.removeEventListener('resize', check)
   }, [])
 
-  // Close menu when route changes
-  useEffect(() => {
-    setMenuOpen(false)
-  }, [location.pathname])
-
   // Close on outside click
   useEffect(() => {
     if (!menuOpen) return
@@ -85,10 +83,10 @@ function Navbar() {
 
   const handleScrollLink = (sectionId: string) => {
     setMenuOpen(false)
-    if (location.pathname === '/') {
+    if (pathname === '/') {
       scrollToSection(sectionId)
     } else {
-      navigate('/', { state: { scrollTo: sectionId } })
+      router.push(`/#${sectionId}`)
     }
   }
 
@@ -98,9 +96,9 @@ function Navbar() {
       <button className={styles.navLink} onClick={() => handleScrollLink('projects')}>projects</button>
       <button className={styles.navLink} onClick={() => handleScrollLink('extra')}>extra</button>
       <span className={styles.pipe}>|</span>
-      <Link to="/now" className={styles.navLink}>now</Link>
-      <Link to="/blog" className={styles.navLink}>blog</Link>
-      <Link to="/chat" className={styles.navLink}>chat</Link>
+      <Link href="/now" className={styles.navLink}>now</Link>
+      <Link href="/blog" className={styles.navLink}>blog</Link>
+      <Link href="/chat" className={styles.navLink}>chat</Link>
     </>
   )
 
@@ -114,9 +112,9 @@ function Navbar() {
       </div>
       <div className={styles.dropdownDivider} />
       <div className={styles.dropdownGroup}>
-        <Link to="/now" className={styles.dropdownLink} onClick={() => setMenuOpen(false)}>now</Link>
-        <Link to="/blog" className={styles.dropdownLink} onClick={() => setMenuOpen(false)}>blog</Link>
-        <Link to="/chat" className={styles.dropdownLink} onClick={() => setMenuOpen(false)}>chat</Link>
+        <Link href="/now" className={styles.dropdownLink} onClick={() => setMenuOpen(false)}>now</Link>
+        <Link href="/blog" className={styles.dropdownLink} onClick={() => setMenuOpen(false)}>blog</Link>
+        <Link href="/chat" className={styles.dropdownLink} onClick={() => setMenuOpen(false)}>chat</Link>
       </div>
     </div>,
     document.body
@@ -125,7 +123,7 @@ function Navbar() {
   return (
     <>
       <nav ref={navRef} className={styles.navbar}>
-        <Link to="/" ref={brandRef} className={styles.brand}>justin g.</Link>
+        <Link href="/" ref={brandRef} className={styles.brand}>justin g.</Link>
 
         {/* Ghost element for measuring link width — always rendered but invisible */}
         <div ref={ghostRef} className={styles.ghostLinks} aria-hidden="true">
