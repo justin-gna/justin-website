@@ -33,13 +33,15 @@ $blob-interactive: #f63358; //#e59095; // mouse-follow blob
   filter: url(#goo) blur(40px);
 }
 
-// Mobile: drop the SVG #goo filter — mobile GPUs (esp. iOS Safari) downsample
-// and clamp SVG feGaussianBlur, so the metaball threshold bands instead of
-// merging. CSS blur() alone IS hardware-composited; the radial blobs already
-// fade to transparent, so they still blend into a smooth cloud without goo.
+// Mobile: no blobs at all — flat background colour. The blurred/goo-filtered
+// blobs are expensive to composite on mobile GPUs and janked while scrolling.
 @media (max-width: 768px) {
+  .gradientBg {
+    background: vars.$color-bg;
+  }
+
   .gradientsContainer {
-    filter: blur(40px);
+    display: none;
   }
 }
 

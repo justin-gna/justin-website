@@ -14,6 +14,9 @@ export function GradientBackground() {
     const bubble = interactiveRef.current
     if (!container || !bubble) return
 
+    // Mobile hides the blobs entirely (see .module.scss) — skip the rAF loop.
+    if (window.matchMedia('(max-width: 768px)').matches) return
+
     let curX = 0
     let curY = 0
     let tgX = 0
